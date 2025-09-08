@@ -5,15 +5,28 @@ import { Input, InputGroup } from 'rsuite';
 import SearchIcon from '@rsuite/icons/Search';
 import PropTypes from 'prop-types';
 
-const SearchFilter = ({ placeholder, inputClass, onChangeHandler, ...props }) => {
 
+interface SearchFilterProps {
+    placeholder?: string;
+    inputClass?: string;
+    label?: string;
+    onChangeHandler: (value: string, event?: React.SyntheticEvent) => void;
+  }
+  
+  const SearchFilter: React.FC<SearchFilterProps> = ({ placeholder, inputClass, onChangeHandler, label, ...props }) => {
     return (
         <>
             <div className="search-container">
                 <div className="flex-col">
-                    <div className='search-label'><span>{props.label}</span></div>
+                    <div className='search-label'><span>{label}</span></div>
                     <InputGroup {...props} inside className="mb-1">
-                        <Input placeholder={placeholder} className={inputClass} size="lg" onChange={onChangeHandler} />
+                    {label && <label>{label}</label>}
+                        <input
+                        className={inputClass}
+                        placeholder={placeholder}
+                        onChange={(e) => onChangeHandler(e.currentTarget.value, e)}
+                        {...props}
+                        />
                         <InputGroup.Button>
                             <SearchIcon />
                         </InputGroup.Button>
@@ -24,12 +37,6 @@ const SearchFilter = ({ placeholder, inputClass, onChangeHandler, ...props }) =>
         </>
 
     )
-}
-SearchFilter.propTypes = {
-    placeholder: PropTypes.string,
-    inputClass: PropTypes.string,
-    onChangeHandler: PropTypes.func,
-    label: PropTypes.any
 }
 
 

@@ -25,6 +25,8 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "parser": "@typescript-eslint/parser",
+
     "plugins": [
         "react",
         "jsx-a11y",
@@ -33,7 +35,7 @@
     "rules": {
         // "react/react-in-jsx-scope":"off",
         // "react/prop-types":"off",
-        // "no-unused-vars":"off",
+         "no-unused-vars":"off",
         "no-console": 1
         // "no-empty":"off"
     }

@@ -1,68 +1,83 @@
 // import * as ACTIONS from "../../store/actions/pokemonAction";
+import { ActionTypes, PokemonAction, PokemonState } from "../../models";
 
-
-export const initialState = {
-    pokemonsList: [],
-    allPokemonsList: [],
-    pokemonSelectedId: null,
-    pokemonData: null,
-    isLoading: true,
-    isLoadMoreInprogress: false,
-    pokemonsTypes: [],
-    pokemonGenderList: []
+export const initialState: PokemonState = {
+  pokemonsList: [],
+  allPokemonsList: [],
+  pokemonSelectedId: null,
+  pokemonData: null,
+  isLoading: true,
+  isLoadMoreInprogress: false,
+  pokemonsTypes: [],
+  pokemonGenderList: [],
 };
 
+export const reducer = (
+  state: PokemonState,
+  action: PokemonAction
+): PokemonState => {
+  switch (action.type) {
+    case ActionTypes.SET_POKEMON_LIST:
+      return {
+        ...state,
+        pokemonsList: [...state.pokemonsList, ...action.payload],
+      };
 
-export const reducer = (state, action) => {
+    case ActionTypes.SET_ALL_POKEMON_LIST:
+      return {
+        ...state,
+        allPokemonsList: action.payload,
+      };
 
-    switch (action.type) {
-        case "ACTIONS.SET_POKEMON_LIST":
-            return {
-                ...state, pokemonsList: [...state.pokemonsList, ...action.payload]
-            };
-        case "ACTIONS.SET_ALL_POKEMON_LIST":
-            return {
-                ...state, allPokemonsList: action.payload
-            };
-        case "ACTIONS.SET_FILTERED_POKEMON_LIST":
-            return {
-                ...state, pokemonsList: action.payload
-            };
-        case "ACTIONS.SET_POKEMON_TYPE":
-            return {
-                ...state, pokemonsTypes: action.payload
-            };
+    case ActionTypes.SET_FILTERED_POKEMON_LIST:
+      return {
+        ...state,
+        pokemonsList: action.payload,
+      };
 
-        case "ACTIONS.SET_POKEMON_GENDER_LIST":
-            return {
-                ...state, pokemonGenderList: action.payload
-            };
+    case ActionTypes.SET_POKEMON_TYPE:
+      return {
+        ...state,
+        pokemonsTypes: action.payload,
+      };
 
-        case "ACTIONS.SET_API_CALL_INPROGRESS":
-            return {
-                ...state, isLoading: action.payload
-            };
-        case "ACTIONS.SET_LOAD_MORE_API_CALL_INPROGRESS":
-            return {
-                ...state, isLoadMoreInprogress: action.payload
-            };
+    case ActionTypes.SET_POKEMON_GENDER_LIST:
+      return {
+        ...state,
+        pokemonGenderList: action.payload,
+      };
 
-        case "ACTIONS.SET_POKEMON_BY_ID":
-            return {
-                ...state, pokemonData: action.payload
-            };
-        case "ACTIONS.RESET_POKEMON_DATA":
-            return {
-                ...state, pokemonData: null
-            };
-        case "ACTIONS.SET_POKEMON_ID":
-            return {
-                ...state, pokemonSelectedId: action.payload
-            };
+    case ActionTypes.SET_API_CALL_INPROGRESS:
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
 
-        default:
-            return state
+    case ActionTypes.SET_LOAD_MORE_API_CALL_INPROGRESS:
+      return {
+        ...state,
+        isLoadMoreInprogress: action.payload,
+      };
 
-    }
+    case ActionTypes.SET_POKEMON_BY_ID:
+      return {
+        ...state,
+        pokemonData: action.payload,
+      };
 
-}
+    case ActionTypes.RESET_POKEMON_DATA:
+      return {
+        ...state,
+        pokemonData: null,
+      };
+
+    case ActionTypes.SET_POKEMON_ID:
+      return {
+        ...state,
+        pokemonSelectedId: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
