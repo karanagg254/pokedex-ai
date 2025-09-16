@@ -1,18 +1,19 @@
-import React from 'react';
+import React from "react";
 import { Loader } from "rsuite";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const Apploader = ({ className }) => {
-    return (
-        <>
-            <div className={className}>
-                <Loader size="md" content="Loading..." />
-            </div>
-        </>
-    )
+interface AppLoaderProps {
+  className: string;
 }
 
-Apploader.propTypes = {
-    className: PropTypes.string
-}
+const Apploader: React.FC<AppLoaderProps> = ({ className }) => {
+  return (
+    <>
+      <div className={className}>
+        <Loader size="md" content="Loading..." />
+      </div>
+    </>
+  );
+};
+
 export default Apploader;

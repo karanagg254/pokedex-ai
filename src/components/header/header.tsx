@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from "react";
 import "./header.scss";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-
-const Header = ({ children }) => {
-  return (
-    <header className="header">
-      {children}
-    </header>
-  );
-};
-
-Header.propTypes = {
-  children: PropTypes.any
+interface HeaderProps {
+  children: ReactNode;
+  className?: string;
 }
+
+const Header: React.FC<HeaderProps> = ({ children }) => {
+  return <header className="header">{children}</header>;
+};
 
 export default Header;

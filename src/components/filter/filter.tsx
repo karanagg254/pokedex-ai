@@ -12,7 +12,7 @@ import {
 } from "../../services/common.service";
 import "./filter.scss";
 import AppMultiSelectDropDown from "./multiSelectdropDown/multiSelectdropDown";
-import SearchFilter from "./search/search.filter";
+import SearchFilter from "./search/SearchFilter";
 import PropTypes from "prop-types";
 import { ActionTypes, Pokemon, PokemonDetail } from "../../models";
 
@@ -84,7 +84,7 @@ const AppFilter = ({ ...props }) => {
     setAppLoading(false);
   };
 
-  const onTypeChangeHandler = (value: string, event?: React.SyntheticEvent) => {
+  const onTypeChangeHandler = (value: string[], event?: React.SyntheticEvent) => {
     event?.preventDefault();
     if (value.length) {
       props.isFilterEnable(true);
@@ -109,7 +109,7 @@ const AppFilter = ({ ...props }) => {
   };
 
   const onGenderChangeHandler = (
-    value: string,
+    value: string[],
     event?: React.SyntheticEvent
   ) => {
     event?.preventDefault();
