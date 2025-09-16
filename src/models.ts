@@ -5,7 +5,10 @@ export interface Pokemon {
 }
 
 export interface Ability {
-  ability: Pokemon;
+  ability: {
+    name: string;
+    url?: string;
+  };
   is_hidden: boolean;
   slot: number;
 }
@@ -40,8 +43,13 @@ export interface Sprite {
   back_default: string | null;
   front_shiny: string | null;
   back_shiny: string | null;
+  other?: {
+    dream_world?: {
+      front_default?: string;
+    };
+  };
   // You can extend more fields from the API response if needed
-  [key: string]: string | null;
+  [key: string]: any;
 }
 
 export interface Cry {
@@ -67,10 +75,20 @@ export interface PokemonDetail {
   past_abilities: Ability[];
   past_types: Type[];
   species: Pokemon;
-  sprites: Sprite;
+  sprites?: Sprite;
   stats: Stat[];
   cries: Cry;
+  weight?: number;
+  types?: { type: { name: string } }[];
 }
+
+export interface SpeciesData {
+  flavor_text_entries?: FlavorTextEntry[];
+  egg_groups?: { name: string }[];
+  [key: string]: any;
+}
+
+
 
 // Define the type for your global state
 export interface PokemonState {
@@ -95,6 +113,12 @@ export enum ActionTypes {
   SET_POKEMON_BY_ID = "ACTIONS.SET_POKEMON_BY_ID",
   RESET_POKEMON_DATA = "ACTIONS.RESET_POKEMON_DATA",
   SET_POKEMON_ID = "ACTIONS.SET_POKEMON_ID",
+}
+
+export interface FlavorTextEntry {
+  flavor_text: string;
+  language: { name: string; url: string };
+  version: { name: string; url: string };
 }
 
 // 2. Action interfaces

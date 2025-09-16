@@ -11,9 +11,9 @@ import AppFilter from "../../components/filter/filter";
 
 
 const HomePage = () => {
-  const [isCardSelected, setToggleSelect] = useState(false);
-  const [pokemonId, setPokemonId] = useState();
-  const [isFilterEnable, setIsFilterEnable] = useState(false);
+  const [isCardSelected, setToggleSelect] = useState<boolean>(false);
+  const [pokemonId, setPokemonId] = useState<number | undefined>();
+  const [isFilterEnable, setIsFilterEnable] = useState<boolean>(false);
 
 
   const { state, getPokemonData } = useContext(PokemonContext);
@@ -40,7 +40,7 @@ const HomePage = () => {
     setToggleSelect((prevState) => !prevState);
   }
 
-  const isFilterEnableHandler = (isEnable) => {
+  const isFilterEnableHandler = (isEnable: boolean) => {
     setIsFilterEnable(isEnable);
   }
 
@@ -51,7 +51,7 @@ const HomePage = () => {
       <div className="home-container">
         <div>
           <Header className="header-container">
-            <Row lg={24} xl={24} className="app-header-wrap show-grid">
+            <Row  className="app-header-wrap show-grid">
               <Col xs={12} sm={12} lg={5} xl={5}>
                 <div className="header-title">
                   <h3>Pokédex</h3>
